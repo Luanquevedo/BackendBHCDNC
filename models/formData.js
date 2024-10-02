@@ -9,7 +9,8 @@ const FormDataSchema = new mongoose.Schema({
   AddressNumber: { type: String, required: true },
   Complement: { type: String },
   Services: { type: String, required: true },
-});
+  userType: {type: String,required: true,enum: ['provider', 'client'],},
+}, { timestamps: true });
 
 const FormData = mongoose.model('FormData', FormDataSchema);
 module.exports = FormData;
