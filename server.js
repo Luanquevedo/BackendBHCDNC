@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Conexão com o MongoDB
-mongoose.connect('mongodb+srv://luanquevedo99:PBntyV1fZdA32TZU@cluster0.3v67g.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado ao MongoDB'))
   .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
