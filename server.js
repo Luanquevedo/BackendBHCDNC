@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 10000;
 app.use(cors());
 app.use(express.json());
 
+
 // Conexão com o MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Conectado ao MongoDB'))
@@ -21,7 +22,6 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 // Rota de Login
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
-
   // Verifica se o usuário e a senha correspondem às variáveis de ambiente
   if (username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD) {
     const token = jwt.sign({ username }, process.env.JWT_SECRET, {
