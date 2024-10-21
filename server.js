@@ -88,6 +88,22 @@ app.post('/api/client-form', async (req, res) => {
   }
 });
 
+// Rota para excluir dados
+app.delete('/api/admin/:id', authenticateJWT, async (req, res) => {
+  const { id } = req.params; // Obtém o ID do registro a ser excluído
+
+  try {
+    const deletedData = await FormData.findByIdAndDelete(id); // Tenta excluir o dado pelo ID
+    if (!deletedData) {
+      return res.status(404).send('Registro não encontrado'); // Se não encontrar o registro
+    }
+    res.status(200).send('Registro excluído com sucesso'); // Retorna sucesso
+  } catch (error) {
+    console.error('Erro ao excluir o dado:', error);
+    res.status(500).send('Erro ao excluir o dado'); // Retorna erro
+  }
+});
+
 // Iniciar o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
