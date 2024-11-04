@@ -1,10 +1,9 @@
-// server.js
-require('dotenv').config(); // Carrega variáveis de ambiente
+require('dotenv').config(); 
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const jwt = require('jsonwebtoken'); // Para criar tokens JWT
-const FormData = require('./models/formData'); // Importando o modelo
+const jwt = require('jsonwebtoken');
+const FormData = require('./models/formData');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -104,7 +103,7 @@ app.delete('/api/admin/:id', authenticateJWT, async (req, res) => {
   }
 });
 
-// Iniciar o servidor
+// Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
